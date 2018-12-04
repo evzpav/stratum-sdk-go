@@ -50,11 +50,11 @@ type DestinationData struct {
 	WalletAddress string `json:"wallet_address"`
 }
 type OperationPayload struct {
-	DestType           string `json:"dest_type,omitempty"`      // types: in,out,intra
-	DirectionType      string `json:"direction_type,omitempty"` //types in,out,intra
+	DestType           string `json:"dest_type,omitempty"`             // types: in,out,intra
+	DirectionType      string `json:"direction_type,omitempty"`        // types in,out,intra
 	OperationEid       int    `json:"operation_eid,omitempty"`
 	OperationStatus    string `json:"operation_status,omitempty"`      // new,processing,done,failed
-	OperationTsFrom    int    `json:"operation_ts_from,omitempty"`     //  doubt ask for Sven
+	OperationTsFrom    int    `json:"operation_ts_from,omitempty"`     // doubt ask for Sven
 	OperationTsTo      int    `json:"operation_ts_to,omitempty"`       // doubt ask for Sven
 	OperationType      string `json:"operation_type,omitempty"`        // types: deposit,withdraw,transfer"
 	OperationUpdTsFrom int    `json:"operation_upd_ts_from,omitempty"` // doubt ask for Sven
@@ -62,6 +62,7 @@ type OperationPayload struct {
 	WalletEid          int    `json:"wallet_eid,omitempty"`
 	WalletGroupEid     int    `json:"wallet_group_eid,omitempty"`
 	WalletId           int    `json:"wallet_id,omitempty"`
+	Currency           string  `json:"Currency"`
 }
 
 type OperationResult struct {
@@ -113,14 +114,6 @@ func (o *Operations) List(payload *OperationPayload) (*[]OperationData, *ApiErro
 	if err != nil {
 		return nil, nil, err
 	}
-
-	// for _, item := range result.Data {
-	// 	destType := &DestinationData{}
-	// 	err := json.Unmarshal([]byte(item.DestinationTypeData), destType)
-	// 	if err != nil {
-	// 		log.Panic(err)
-	// 	}
-	// }
 
 	return &result.Data, apiErr, nil
 
