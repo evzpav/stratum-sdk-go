@@ -5,7 +5,6 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -13,6 +12,8 @@ import (
 	"sort"
 	"strconv"
 	"time"
+
+	"github.com/pquerna/ffjson/ffjson"
 )
 
 const (
@@ -81,15 +82,15 @@ func (c *StratumClient) CallRestApi(mod string, action string, payload []byte, d
 		return answer, err
 	}
 	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
 	if decode {
-		if err := json.NewDecoder(res.Body).Decode(&answer); err != nil {
+		if err := ffjson.NewDecoder().Decode(body, &answer); err != nil {
 			answer.Status = StatusFAIL
 			answer.Message = "Decoding json failed"
 			answer.Data = err.Error()
 			return answer, err
 		}
 	} else {
-		body, err := ioutil.ReadAll(res.Body)
 		if err != nil {
 			answer.Status = StatusFAIL
 			answer.Message = "Decoding body failed"

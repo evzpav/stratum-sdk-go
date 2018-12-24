@@ -1,8 +1,6 @@
 package stratumsdk
 
-import (
-	"encoding/json"
-)
+import "github.com/pquerna/ffjson/ffjson"
 
 // Withdraws strcture for consumer widthdraws
 type Withdraws struct {
@@ -16,7 +14,6 @@ type WithdrawsData struct {
 	OperationEid    int     `json:"operation_eid"`
 	OperationOtp    string  `json:"operation_otp"`
 	WalletId        int     `json:"wallet_id"`
-
 }
 type WithdrawsPayload struct {
 	DestAddress     string  `json:"dest_address"`
@@ -37,7 +34,7 @@ func (c *ApiClient) Withdraws() *Withdraws {
 
 func (w *Withdraws) Crypto(payload *WithdrawsPayload) (*WithdrawsData, *ApiError, error) {
 	result := new(WithdrawsResult)
-	payloadJSON, err := json.Marshal(payload)
+	payloadJSON, err := ffjson.Marshal(payload)
 	if err != nil {
 		return nil, nil, err
 	}

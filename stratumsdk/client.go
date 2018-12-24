@@ -1,8 +1,7 @@
 package stratumsdk
 
 import (
-	"encoding/json"
-
+	"github.com/pquerna/ffjson/ffjson"
 	"github.com/rafaeltokyo/stratum-sdk-go/stratumclient"
 )
 
@@ -47,7 +46,7 @@ func (c *ApiClient) call(module string, action string, payload []byte, target in
 	}
 
 	//fmt.Printf("%s", apires.Raw)
-	if err = json.Unmarshal(apires.Raw, apiErr); err != nil {
+	if err = ffjson.Unmarshal(apires.Raw, apiErr); err != nil {
 		return nil, err
 	}
 	if apiErr.Status != StatusOK {
@@ -56,7 +55,7 @@ func (c *ApiClient) call(module string, action string, payload []byte, target in
 	if target == nil {
 		return nil, nil
 	}
-	if err = json.Unmarshal(apires.Raw, target); err != nil {
+	if err = ffjson.Unmarshal(apires.Raw, target); err != nil {
 		return nil, err
 	}
 	return nil, nil

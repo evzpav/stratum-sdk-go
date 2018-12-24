@@ -1,7 +1,7 @@
 package stratumsdk
 
 import (
-	"encoding/json"
+	"github.com/pquerna/ffjson/ffjson"
 )
 
 type WalletAddressData struct {
@@ -51,7 +51,7 @@ func (c *ApiClient) WalletsAddresses() *WalletsAddresses {
 //List - list wallet addresses assign
 func (wa *WalletsAddresses) List(payload *WalletsAddressesListPayload) (*[]WalletAddressData, *ApiError, error) {
 	result := new(WalletsAddressesListResult)
-	payloadJSON, err := json.Marshal(payload)
+	payloadJSON, err := ffjson.Marshal(payload)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -65,7 +65,7 @@ func (wa *WalletsAddresses) List(payload *WalletsAddressesListPayload) (*[]Walle
 //Assign - assign the wallet by WalletId
 func (wa *WalletsAddresses) Assign(payload *WalletAddressesPayload) (*WalletAddressData, *ApiError, error) {
 	result := new(WalletAddressesResult)
-	payloadJSON, err := json.Marshal(payload)
+	payloadJSON, err := ffjson.Marshal(payload)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -79,7 +79,7 @@ func (wa *WalletsAddresses) Assign(payload *WalletAddressesPayload) (*WalletAddr
 
 func (wa *WalletsAddresses) Get(payload *WalletAddressesPayload) (*WalletAddressData, *ApiError, error) {
 	result := new(WalletAddressesResult)
-	payloadJSON, err := json.Marshal(payload)
+	payloadJSON, err := ffjson.Marshal(payload)
 	if err != nil {
 		return nil, nil, err
 	}
