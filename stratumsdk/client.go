@@ -1,8 +1,8 @@
 package stratumsdk
 
 import (
+	"github.com/evzpav/stratum-sdk-go/stratumclient"
 	"github.com/pquerna/ffjson/ffjson"
-	"github.com/rafaeltokyo/stratum-sdk-go/stratumclient"
 )
 
 const (
@@ -59,4 +59,12 @@ func (c *ApiClient) call(module string, action string, payload []byte, target in
 		return nil, err
 	}
 	return nil, nil
+}
+
+func (c *ApiClient) SetNetTransportTimeout(timeout int) {
+	c.conn.SetNetTransportTimeout(timeout)
+}
+
+func (c *ApiClient) SetNetClientTimeout(timeout int) {
+	c.conn.SetNetClientTimeout(timeout)
 }
