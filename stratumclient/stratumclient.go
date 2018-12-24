@@ -22,9 +22,11 @@ const (
 )
 
 type StratumClient struct {
-	apiKey       string
-	apiKeySecret string
-	endpoint     string
+	apiKey              string
+	apiKeySecret        string
+	endpoint            string
+	netTransportTimeout time.Duration
+	netClientTimeout    time.Duration
 }
 
 type ResultHeader struct {
@@ -41,9 +43,11 @@ type Result struct {
 
 func New(user string, secret string) *StratumClient {
 	return &StratumClient{
-		apiKey:       user,
-		apiKeySecret: secret,
-		endpoint:     "https://stratum.global/api/",
+		apiKey:              user,
+		apiKeySecret:        secret,
+		endpoint:            "https://stratum.global/api/",
+		netTransportTimeout: 5 * time.Second,
+		netClientTimeout:    10 * time.Second,
 	}
 }
 
@@ -51,6 +55,13 @@ func (c *StratumClient) SetEndpoint(endpoint string) {
 	c.endpoint = endpoint
 }
 
+func (c *StratumClient) SetNetTransportTimeout(timeout int) {
+	c.netTransportTimeout = time.Second * time.Duration(timeout)
+}
+
+func (c *StratumClient) SetNetClientTimeout(timeout int) {
+	c.netClientTimeout = time.Second * time.Duration(timeout)
+}
 func (c *StratumClient) CallRestApi(mod string, action string, payload []byte, decode bool) (Result, error) {
 	// create data package
 	mytime := time.Now().Unix()
@@ -59,18 +70,18 @@ func (c *StratumClient) CallRestApi(mod string, action string, payload []byte, d
 		"api_user": {c.apiKey},
 		"payload":  {string(payload)},
 	}
-	api_sig := makeSig([]byte(c.apiKeySecret), makeSigMsg(sdata))
-	sdata.Add("api_sig", api_sig)
+	apiSig := makeSig([]byte(c.apiKeySecret), makeSigMsg(sdata))
+	sdata.Add("api_sig", apiSig)
 
 	// holt the returl
 	var answer Result
 
 	// create http client, unlimited timeouts are not an option !!
 	var netTransport = &http.Transport{
-		Dial:                (&net.Dialer{Timeout: 5 * time.Second}).Dial,
-		TLSHandshakeTimeout: 5 * time.Second,
+		Dial:                (&net.Dialer{Timeout: c.netTransportTimeout}).Dial,
+		TLSHandshakeTimeout: c.netTransportTimeout,
 	}
-	var netClient = &http.Client{Timeout: time.Second * 10, Transport: netTransport}
+	var netClient = &http.Client{Timeout: c.netClientTimeout, Transport: netTransport}
 
 	// send and decode output
 	url := concat(c.endpoint, mod, "/", action)
@@ -123,7 +134,7 @@ func makeSig(key []byte, msg string) string {
 // create message to sign from form values
 func makeSigMsg(data url.Values) string {
 	var keys []string
-	for key, _ := range data {
+	for key := range data {
 		if key != "api_sig" {
 			keys = append(keys, key)
 		}
