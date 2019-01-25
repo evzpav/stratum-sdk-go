@@ -3,7 +3,7 @@ package stratumsdk_test
 import (
 	"testing"
 
-	"github.com/rafaeltokyo/stratum-sdk-go/stratumsdk"
+	"github.com/evzpav/stratum-sdk-go/stratumsdk"
 )
 
 const (

@@ -8,7 +8,7 @@ stratum-sdk-go is a sdk for use operation in Stratum.hk cryptocurrency transacti
 ## How to install:
 ``` bash
 go get github.com/pquerna/ffjson
-go get github.com/rafaeltokyo/stratum-sdk-go
+go get github.com/evzpav/stratum-sdk-go
 ```
 
 ## How to use
@@ -66,23 +66,23 @@ fmt.Printf("my btc address",walletAddress.WalletAddress)
 
 ## WalletGroup
 
-[Create a new WalletGroup](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20Create.md) <br />
-[Get WalletGroup List](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20List.md)<br />
-[Get WalletGroup Detail](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20Get.md)<br />
+[Create a new WalletGroup](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20Create.md) <br />
+[Get WalletGroup List](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20List.md)<br />
+[Get WalletGroup Detail](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletGroup/WalletGroup%20Get.md)<br />
 
 ## Wallet
 
-[Create a new Wallet](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/wallet/Wallet%20Create.md) <br />
-[Get Wallet List](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/wallet/Wallet%20Get.md)<br />
-[Get Wallet Detail](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/wallet/Wallet%20List.md)<br />
+[Create a new Wallet](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/wallet/Wallet%20Create.md) <br />
+[Get Wallet List](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/wallet/Wallet%20Get.md)<br />
+[Get Wallet Detail](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/wallet/Wallet%20List.md)<br />
 
 ## WalletAddress
 
-[Assign WalletAddress](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20Assign.md) <br />
-[Get Wallet List](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20List.md)<br />
-[Get Wallet Detail](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20List.md)<br />
+[Assign WalletAddress](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20Assign.md) <br />
+[Get Wallet List](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20List.md)<br />
+[Get Wallet Detail](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/walletAddress/WalletAddress%20List.md)<br />
 
 ## Operations
 
-[Operations list](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/operations/Operation%20List.md) <br />
-[Operations Fee](https://github.com/rafaeltokyo/stratum-sdk-go/blob/master/docs/operations/Operation%20fee.md)<br />
+[Operations list](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/operations/Operation%20List.md) <br />
+[Operations Fee](https://github.com/evzpav/stratum-sdk-go/blob/master/docs/operations/Operation%20fee.md)<br />

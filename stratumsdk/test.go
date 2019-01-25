@@ -1,6 +1,6 @@
 package stratumsdk
 
-import "github.com/rafaeltokyo/stratum-sdk-go/stratumclient"
+import "github.com/evzpav/stratum-sdk-go/stratumclient"
 
 // Test api resource Client
 type Test struct {
